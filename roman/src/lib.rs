@@ -1,12 +1,23 @@
 fn add(x:&str, y:&str) -> String {
-  let xy = String::new() + x + y;
-  if xy.len() == 4 {
-    "IV".to_string()
-  } else if xy.len() == 5 {
-    "V".to_string()
-  } else {
-    xy
+  let expanded = expandio(x) + &expandio(y);
+  match expanded.len() {
+    4 => "IV".to_string(),
+    5 => "V".to_string(),
+    _ => String::new() + x + y,
   }
+}
+
+fn expandio(x:&str) -> String {
+  let matched = match x {
+    "IV" => "IIII",
+    _    => x,
+  };
+
+  matched.to_string() 
+}
+    #[test]
+fn iv_plus_i_eq_v() {
+  assert_eq!(&add("IV", "I"), "V");
 }
 
 #[test]
@@ -15,7 +26,7 @@ fn iii_plus_ii_eq_v() {
 }
 
 #[test]
-fn it_works() {
+fn i_plus_i_eq_ii() {
   let foo = add("I", "I");
   assert_eq!(&foo, "II");
 }
