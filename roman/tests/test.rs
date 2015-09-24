@@ -2,6 +2,11 @@
   use roman::*;
 
   #[test]
+  fn i_plus_v_eq_vi() {
+    assert_eq!(&add("I", "V"), "VI");
+  }
+
+  #[test]
   fn iv_plus_i_eq_v() {
     assert_eq!(&add("IV", "I"), "V");
   }
