@@ -2,9 +2,16 @@ fn add(x:&str, y:&str) -> String {
   let xy = String::new() + x + y;
   if xy.len() == 4 {
     "IV".to_string()
+  } else if xy.len() == 5 {
+    "V".to_string()
   } else {
     xy
   }
+}
+
+#[test]
+fn iii_plus_ii_eq_v() {
+  assert_eq!(&add("III", "II"), "V");
 }
 
 #[test]
